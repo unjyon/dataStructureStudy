@@ -33,7 +33,16 @@ class LinkedList {
     this.length++;
     return this.length;
   }
-  search(value) {}
+  search(index) {
+    // count 0으로 선언
+    let count = 0;
+    let current = this.head;
+    while (count < index) {
+      current = current?.next;
+      count++;
+    }
+    return current?.value;
+  }
   remove(value) {}
 }
 class Node {
@@ -52,6 +61,9 @@ ll.add(3); // 3
 ll.add(4); // 4
 ll.add(5); // 5
 ll.add(6); // 6
+console.log(ll.search(3)); // 4
+console.log(ll.search(5)); // 6
+console.log(ll.search(7)); // undefined
 // ll.search(4);
 // ll.search(7); //    null
 // ll.remove(4);
