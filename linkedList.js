@@ -36,14 +36,28 @@ class LinkedList {
   search(index) {
     // count 0으로 선언
     let count = 0;
+    let prev;
     let current = this.head;
     while (count < index) {
+      prev = current;
       current = current?.next;
       count++;
     }
     return current?.value;
   }
-  remove(value) {}
+  remove(index) {
+    let count = 0;
+    let prev;
+    let current = this.head;
+    while (count < index) {
+      prev = current;
+      current = current?.next;
+      count++;
+    }
+    prev.next = current.next;
+    this.length--;
+    return this.length;
+  }
 }
 class Node {
   next = null;
@@ -61,10 +75,8 @@ ll.add(3); // 3
 ll.add(4); // 4
 ll.add(5); // 5
 ll.add(6); // 6
-console.log(ll.search(3)); // 4
-console.log(ll.search(5)); // 6
-console.log(ll.search(7)); // undefined
-// ll.search(4);
-// ll.search(7); //    null
-// ll.remove(4);
-// ll.search(4); //    null
+console.log(ll.search(6)); // undefined
+ll.remove(4); // 5
+console.log(ll.search(4)); // 6
+ll.remove(4);
+console.log(ll.search(4)); // undefined
