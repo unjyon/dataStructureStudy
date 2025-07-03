@@ -34,7 +34,10 @@ class LinkedList {
     return this.length;
   }
   search(index) {
-    // count 0으로 선언
+    return this.#search(index)[1]?.value; // #search 함수의 두번째 값(current)의 벨류가 있으면 리턴
+  }
+  // 이 함수는 내부에서만 사용하기 위해 # 을 붙여줌
+  #search(index) {
     let count = 0;
     let prev;
     let current = this.head;
@@ -43,20 +46,24 @@ class LinkedList {
       current = current?.next;
       count++;
     }
-    return current?.value;
+    // prev 는 이전 노드, current 는 현재 노드를 리턴
+    return [prev, current];
   }
   remove(index) {
-    let count = 0;
-    let prev;
-    let current = this.head;
-    while (count < index) {
-      prev = current;
-      current = current?.next;
-      count++;
-    }
-    prev.next = current.next;
-    this.length--;
-    return this.length;
+    // 구조분해 할당
+    const [prev, current] = this.#search(index);
+    if (prev && current) {
+      prev.next = current.next;
+      this.length--;
+      return this.length;
+    } else if (current) {
+      // index 가 0 일때
+    this.head = current.next;
+      this.length--;
+      return this.length;
+    } 
+    // 삭제하고자 하는 대상이 없을 때
+    // 아무것도 안함
   }
 }
 class Node {
@@ -80,3 +87,4 @@ ll.remove(4); // 5
 console.log(ll.search(4)); // 6
 ll.remove(4);
 console.log(ll.search(4)); // undefined
+console.log('hi')
