@@ -10,28 +10,16 @@ class LinkedList {
   // 첫 시작이기에 head 는 null
   // 여기서 head 는 const ll 임
   head = null;
-
+  tail = null;
   add(value) {
     if (this.head) {
-      // head 의 값이 있을 경우 new Node 에 값 추가
-      // this.head.next = new Node(value);
-      // 문제는 그 다음 값이 들어 오면 아래와 같아짐
-      // this.head.next.next = new Node(value);
-
-      // 이럴때 반복문을 사용하면 좋음
-      // current 를 this.head 로 선언해주고
-      let current = this.head;
-      // 다음 current.next 가 없을때까지 계속 들어간다
-      while (current.next) {
-        current = current.next;
-      }
-      // 마지막에 없는 데에다가 연결해준다.
-      current.next = new Node(value);
+      // tail을 이용해서 O(1)로 개선
+      this.tail.next = new Node(value);
+      this.tail = this.tail.next;
     } else {
-      // head 가 비어있을때
+      // head가 비어있을때
       this.head = new Node(value);
-
-      // 쓸모있는 데이터를 반환(return) 해 주는 것이 좋음
+      this.tail = this.head; // tail도 head와 같은 노드를 가리키도록 설정
     }
     this.length++;
     return this.length;
@@ -61,6 +49,7 @@ class LinkedList {
     const [prev, current] = this.#search(index);
     if (prev && current) {
       if (!current.next) {
+        // 마지막 노드를 삭제하는 경우
         prev.next = null;
         this.tail = prev;
       } else {
@@ -70,8 +59,12 @@ class LinkedList {
       this.length--;
       return this.length;
     } else if (current) {
-      // index 가 0 일때
-    this.head = current.next;
+      // index가 0일때 (head를 삭제하는 경우)
+      this.head = current.next;
+      // head가 null이 되면 tail도 null로 설정
+      if (!this.head) {
+        this.tail = null;
+      }
       this.length--;
       return this.length;
     } 
