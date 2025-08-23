@@ -1,3 +1,6 @@
+//1. 숙제 : next 아닌 이전것 prev
+//2. 숙제 : O(n) 을 O(1) 로 변경하기 (힌트: tail)
+
 class LinkedList {
   //   length = 0; 부분을 constructor로 쓰는 경우 아래와 같은 문법임
   //   constructor(length) {
@@ -36,6 +39,10 @@ class LinkedList {
   search(index) {
     return this.#search(index)[1]?.value; // #search 함수의 두번째 값(current)의 벨류가 있으면 리턴
   }
+
+  searchPrev (index) {
+    return this.#search(index)[0]?.value;
+  }
   // 이 함수는 내부에서만 사용하기 위해 # 을 붙여줌
   #search(index) {
     let count = 0;
@@ -53,7 +60,13 @@ class LinkedList {
     // 구조분해 할당
     const [prev, current] = this.#search(index);
     if (prev && current) {
-      prev.next = current.next;
+      if (!current.next) {
+        prev.next = null;
+        this.tail = prev;
+      } else {
+        prev.next = current.next;
+        current.next.prev = prev;
+      }
       this.length--;
       return this.length;
     } else if (current) {
@@ -67,10 +80,12 @@ class LinkedList {
   }
 }
 class Node {
-  next = null;
+  
   // 외부에서 전달 받을 값은 constructure 구조로 써야 함
   constructor(value) {
     this.value = value;
+    this.next = null;
+    this.prev = null;
   }
 }
 
@@ -85,6 +100,7 @@ ll.add(6); // 6
 console.log(ll.search(6)); // undefined
 ll.remove(4); // 5
 console.log(ll.search(4)); // 6
+console.log(ll.searchPrev(4)); //4
 ll.remove(4);
 console.log(ll.search(4)); // undefined
 console.log('hi')
