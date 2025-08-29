@@ -25,6 +25,6 @@ stack.push(2);
 stack.push(5);
 stack.push(3);
 stack.push(7);
-stack.length;
+console.log(stack.length); // 5
 stack.pop();
-stack.top();
+console.log(stack.top()); // 3
