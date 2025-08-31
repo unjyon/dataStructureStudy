@@ -1,0 +1,23 @@
+{
+    "name": "data-structure-study",
+    "version": "1.0.0",
+    "description": "Data structure implementations in JavaScript",
+    "main": "index.js",
+    "scripts": {
+        "start": "node linkedList.js",
+        "test": "node --test",
+        "debug": "node --inspect-brk linkedList.js"
+    },
+    "keywords": [
+        "data-structures",
+        "javascript",
+        "linked-list",
+        "stack",
+        "queue"
+    ],
+    "author": "",
+    "license": "MIT",
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}

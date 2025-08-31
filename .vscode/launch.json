@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug LinkedList",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/linkedList.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Stack LinkedList",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/stack_linkedList.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Queue LinkedList",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/queue_linkedList.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Current File",
+            "type": "node",
+            "request": "launch",
+            "program": "${file}",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
