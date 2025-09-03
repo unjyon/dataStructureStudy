@@ -53,3 +53,8 @@ _단점:_ 다음것을 찾을 수 있지만, 이전 값을 찾을 수 없다.
 [강의 요약](https://www.notion.so/Study-c6b38ef02dcd4b279e7a605515344458?p=25a1ede3f1b580d39c67c7895430c29e&pm=s)
 
 ![스택](/images/stack_queue.png)
+
+## 이진트리
+
+[강의 요약](https://www.notion.so/4-2621ede3f1b580e7954ef962b35e81dc?source=copy_link)
+![이진트리](/images/binarysearchtree.png)
