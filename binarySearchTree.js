@@ -34,8 +34,42 @@ class BinarySearchTree {
       //숙제: 같은 값을 넣은 경우 에러처리(alert, throw)
     }
   }
+  #search(node, value) {
+    if (node.value > value) {
+      if (!node.left) {
+        return null;
+      }
+      if (node.left.value === value) {
+        // 왼팔의 값을 찾았을 때
+        return node.left;
+      }
+
+      return this.#search(node.left, value);
+    } else {
+      if (!node.right) {
+        return null;
+      }
+      if (node.right.value === value) {
+        // 오른팔의 값을 찾았을 때
+        return node.right;
+      }
+      // 그렇지 않으면 탐색
+      return this.#search(node.right, value);
+    }
+  }
   // 값 찾기 - 수정하기는 search에서 활용
-  search(value) {}
+  search(value) {
+    // 어떤 값을 찾으려 할때, 일단 어디에 있는지 모르겠다.
+    // 그래서 왼팔 오른팔한테 맡긴다.
+    // 찾으면 그 노드를 return, 못찾으면 null을 return
+    if (!this.root) {
+      return null;
+    }
+    if (this.root.value === value) {
+      return this.root;
+    }
+    return this.#search(this.root, value);
+  }
 
   //값 삭제
   remove(value) {}
