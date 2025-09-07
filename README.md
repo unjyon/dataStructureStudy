@@ -58,3 +58,7 @@ _단점:_ 다음것을 찾을 수 있지만, 이전 값을 찾을 수 없다.
 
 [강의 요약](https://www.notion.so/4-2621ede3f1b580e7954ef962b35e81dc?source=copy_link)
 ![이진트리](/images/binarysearchtree.png)
+
+## DFS,BFS, 순회
+
+![순회](/images/tree_traversal.png)
