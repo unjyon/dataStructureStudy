@@ -1,4 +1,4 @@
-class BinarySearchTree {
+export class BinarySearchTree {
   root = null;
   length = 0;
 
@@ -142,23 +142,23 @@ class Node {
   }
 }
 
-const bst = new BinarySearchTree();
+// const bst = new BinarySearchTree();
 
-bst.insert(8);
-bst.insert(10);
-bst.insert(3);
-bst.insert(1);
-bst.insert(14);
-bst.insert(6);
-bst.insert(7);
-bst.insert(4);
-bst.insert(13);
+// bst.insert(8);
+// bst.insert(10);
+// bst.insert(3);
+// bst.insert(1);
+// bst.insert(14);
+// bst.insert(6);
+// bst.insert(7);
+// bst.insert(4);
+// bst.insert(13);
 
-// console.log(bst.insert(4));
-console.log(bst.search(7));
-console.log(bst.search(5));
-bst.remove(8);
-console.log(bst.remove(15)); //false
-bst.remove(4);
-bst;
-bst.length;
+// // console.log(bst.insert(4));
+// console.log(bst.search(7));
+// console.log(bst.search(5));
+// bst.remove(8);
+// console.log(bst.remove(15)); //false
+// bst.remove(4);
+// bst;
+// bst.length;

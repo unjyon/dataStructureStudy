@@ -1,6 +1,7 @@
 {
     "name": "data-structure-study",
     "version": "1.0.0",
+    "type": "module",
     "description": "Data structure implementations in JavaScript",
     "main": "index.js",
     "scripts": {
