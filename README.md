@@ -62,3 +62,8 @@ _단점:_ 다음것을 찾을 수 있지만, 이전 값을 찾을 수 없다.
 ## DFS,BFS, 순회
 
 ![순회](/images/tree_traversal.png)
+
+## 힙(Heap)
+
+[강의 요약](https://www.notion.so/5-Heap-2691ede3f1b5805a8ea1c8acd64b97f7?source=copy_link)
+![힙](/imgaes/heap.png)
