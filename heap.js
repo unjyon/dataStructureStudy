@@ -1,17 +1,17 @@
 class Heap {
   arr = [];
 
-  #reeapUp(index) {
+  #reheapUp(index) {
     // 부모가 -가 되면 안되므로
     // 여기에서 0은 root 이다.
     if (index > 0) {
-      const parrentIndex = Math.floor((index - 1) / 2);
-      if (this.arr[index] > this.arr[parrentIndex]) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.arr[index] > this.arr[parentIndex]) {
         // 값 바꾸기
         const temp = this.arr[index];
-        this.arr[index] = this.arr[parrentIndex];
-        this.arr[parrentIndex] = temp;
-        this.#reeapUp(parrentIndex);
+        this.arr[index] = this.arr[parentIndex];
+        this.arr[parentIndex] = temp;
+        this.#reheapUp(parentIndex);
       }
     }
   }
@@ -20,14 +20,48 @@ class Heap {
   insert(value) {
     const index = this.arr.length;
     this.arr[index] = value; // arr 의 가장 마지막에 추가
-    this.#reeapUp(index); // 여기에서 부모와 자식의 값을 비교해서 위치를 변경하는 재귀 함수를 사용한다.
+    this.#reheapUp(index); // 여기에서 부모와 자식의 값을 비교해서 위치를 변경하는 재귀 함수를 사용한다.
+  }
+
+  #reheapDown(index) {
+    const leftIndex = index * 2 + 1;
+    // this.arr.length 보다 작다는건 자식이 있다는 것
+    if (leftIndex < this.arr.length) {
+      const rightIndex = index * 2 + 2;
+      const bigger = this.arr[leftIndex] > this.arr[rightIndex] ? leftIndex : rightIndex;
+      // 자식보다 작으면 자식과 바꾸기
+      if (this.arr[index] < this.arr[bigger]) {
+        const temp = this.arr[index];
+        this.arr[index] = this.arr[bigger];
+        this.arr[bigger] = temp;
+        this.#reheapDown(bigger);
+      }
+    }
   }
 
   remove() {
     //root만 제거
+    if (this.arr.length === 0) {
+      return false;
+    }
+    if (this.arr.length === 1) {
+        return this.arr.pop();
+    }
+    const root = this.arr[0];
+    this.arr[0] = this.arr.pop();
+    this.#reheapDown(0);
+    return root;
+  }
+  sort () {
+    // 힙정렬
+    const sortedArray = [];
+    while (this.arr.length > 0) {
+        sortedArray.push(this.remove());
+    }
+    return sortedArray;
   }
   search(value) {
-    for (let i = 0; i < this.arr.length; i++) {
+    for (let i = 0; i < this.arr.length; i++) {    
       if (this.arr[i] === value) {
         return i;
       }
@@ -45,4 +79,5 @@ heap.insert(32);
 heap.insert(45);
 heap.insert(56);
 heap.insert(78);
+console.log(heap.sort())
 heap;
