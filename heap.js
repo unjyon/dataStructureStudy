@@ -107,6 +107,30 @@ class MaxHeap {
         this.#heapify(bigger);
     }
   }
+
+  convertToMinHeap() {
+    for (let i = Math.floor(this.arr.length / 2 - 1); i >= 0; i--) {
+      this.#minHeapify(i);
+    }
+    return this.arr;
+  }
+
+  #minHeapify(index) {
+    const leftIndex = index * 2 + 1;
+    const rightIndex = index * 2 + 2;
+    //(this.arr[leftIndex] || Infinity) undefined 일때 Infinity로 초기화
+    const smaller = (this.arr[leftIndex] || Infinity) < (this.arr[rightIndex] || Infinity)
+        ? leftIndex : rightIndex;
+    console.log(index, this.arr[index], this.arr[smaller]);
+
+    // 자기 자식중에 더 작은애보다 내가 크면 바꿔주기
+    if (this.arr[index] > this.arr[smaller]) {
+        const temp = this.arr[index];
+        this.arr[index] = this.arr[smaller];
+        this.arr[smaller] = temp;
+        this.#minHeapify(smaller);
+    }
+}
 }
 
 const heap = new MaxHeap();
@@ -119,5 +143,6 @@ heap.insert(45);
 heap.insert(56);
 heap.insert(78);
 // heap.update(23, 90);
-heap.removeValue(32);
+// heap.removeValue(32);
+heap.convertToMinHeap();
 heap;

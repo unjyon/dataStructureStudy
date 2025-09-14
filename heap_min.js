@@ -1,4 +1,4 @@
-export class MinHeap {
+class MinHeap {
     arr = [];
   
     #reheapUp(index) {
@@ -91,22 +91,46 @@ export class MinHeap {
       } 
     }
   
-  #heapify(index) {
-    const leftIndex = index * 2 + 1;
-    const rightIndex = index * 2 + 2;
-    //(this.arr[leftIndex] || Infinity) undefined 일때 Infinity로 초기화
-    const smaller = (this.arr[leftIndex] || Infinity) < (this.arr[rightIndex] || Infinity)
-        ? leftIndex : rightIndex;
-    console.log(index, this.arr[index], this.arr[smaller]);
+    #heapify(index) {
+        const leftIndex = index * 2 + 1;
+        const rightIndex = index * 2 + 2;
+        //(this.arr[leftIndex] || Infinity) undefined 일때 Infinity로 초기화
+        const smaller = (this.arr[leftIndex] || Infinity) < (this.arr[rightIndex] || Infinity)
+            ? leftIndex : rightIndex;
+        console.log(index, this.arr[index], this.arr[smaller]);
 
-    // 자기 자식중에 더 작은애보다 내가 크면 바꿔주기
-    if (this.arr[index] > this.arr[smaller]) {
-        const temp = this.arr[index];
-        this.arr[index] = this.arr[smaller];
-        this.arr[smaller] = temp;
-        this.#heapify(smaller);
+        // 자기 자식중에 더 작은애보다 내가 크면 바꿔주기
+        if (this.arr[index] > this.arr[smaller]) {
+            const temp = this.arr[index];
+            this.arr[index] = this.arr[smaller];
+            this.arr[smaller] = temp;
+            this.#heapify(smaller);
+        }
     }
-  }
+
+    convertToMaxHeap() {
+        for (let i = Math.floor(this.arr.length / 2 - 1); i >= 0; i--) {
+            this.#maxHeapify(i);
+        }
+        return this.arr;
+    }
+
+    #maxHeapify(index) {
+        const leftIndex = index * 2 + 1;
+        const rightIndex = index * 2 + 2;
+        //(this.arr[leftIndex] || 0) undefined 일때 0으로 초기화
+        const bigger = (this.arr[leftIndex] || 0) > (this.arr[rightIndex] || 0)
+            ? leftIndex : rightIndex;
+        console.log(index, this.arr[index], this.arr[bigger]);
+    
+        // 자기 자식중에 더 큰애보다 내가 작으면 바꿔주기
+        if (this.arr[index] < this.arr[bigger]) {
+            const temp = this.arr[index];
+            this.arr[index] = this.arr[bigger];
+            this.arr[bigger] = temp;
+            this.#maxHeapify(bigger);
+        }
+      }
   }
   
   const heap = new MinHeap();
@@ -120,5 +144,6 @@ export class MinHeap {
   heap.insert(78);
 //   console.log(heap.sort());
 // heap.update(23, 90);
-  heap.removeValue(32);
+//   heap.removeValue(32);
+  heap.convertToMaxHeap();
   heap;
