@@ -1,4 +1,4 @@
-class Heap {
+class MaxHeap {
   arr = [];
 
   #reheapUp(index) {
@@ -68,9 +68,48 @@ class Heap {
     }
     return null;
   }
+  update(value, newValue) {
+    const index = this.search(value);
+    if (index === null) {
+      return false;
+    }
+    this.arr[index] = newValue;
+    // 첫번째 노드부터 시작해서 마지막 노드까지 순회해서 heapify
+    for (let i = Math.floor(this.arr.length / 2 - 1); i >= 0; i--) { // O(1/2n)
+      this.#heapify(i); // O(1)
+  }
+  }
+  // 특정값 삭제
+  removeValue(value) {
+    const index = this.search(value);
+    if (index === null) {
+      return false;
+    }
+    this.arr.splice(index, 1); 
+    for (let i = Math.floor(this.arr.length / 2 - 1); i >= 0; i--) { // O(1/2n)
+      this.#heapify(i); // O(1)
+    } 
+  }
+
+  #heapify(index) {
+    const leftIndex = index * 2 + 1;
+    const rightIndex = index * 2 + 2;
+    //(this.arr[leftIndex] || 0) undefined 일때 0으로 초기화
+    const bigger = (this.arr[leftIndex] || 0) > (this.arr[rightIndex] || 0)
+        ? leftIndex : rightIndex;
+    console.log(index, this.arr[index], this.arr[bigger]);
+
+    // 자기 자식중에 더 큰애보다 내가 작으면 바꿔주기
+    if (this.arr[index] < this.arr[bigger]) {
+        const temp = this.arr[index];
+        this.arr[index] = this.arr[bigger];
+        this.arr[bigger] = temp;
+        this.#heapify(bigger);
+    }
+  }
 }
 
-const heap = new Heap();
+const heap = new MaxHeap();
 
 heap.insert(8);
 heap.insert(19);
@@ -79,5 +118,6 @@ heap.insert(32);
 heap.insert(45);
 heap.insert(56);
 heap.insert(78);
-console.log(heap.sort())
+// heap.update(23, 90);
+heap.removeValue(32);
 heap;
