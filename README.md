@@ -68,7 +68,7 @@ _단점:_ 다음것을 찾을 수 있지만, 이전 값을 찾을 수 없다.
 [강의 요약](https://www.notion.so/5-Heap-2691ede3f1b5805a8ea1c8acd64b97f7?source=copy_link)
 ![힙](/images/heap.png)
 
-## 스택(Stack), 큐(Queue)
+## 우선순위 큐(Queue Priority)
 
 [강의 요약](https://www.notion.so/6-Stack-Queue-26f1ede3f1b580b697cef3baed869f27?source=copy_link)
-![힙](/images/stack_queue.png)
+![힙](/images/etc.png)
